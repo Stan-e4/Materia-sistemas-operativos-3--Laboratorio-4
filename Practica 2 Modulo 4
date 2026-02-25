@@ -1,0 +1,23 @@
+Practica 2: Servidor de Correo
+sudo apt update
+sudo apt install postfix mailutils libsasl2-modules -y
+sudo nano /etc/apache2/sites-available/practica1.conf
+relayhost = [smtp.gmail.com]:587
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_tls_security_level = encrypt
+(Asegurarse de borrar cualquier archivo smtp-ç_tls_security_level menos encrypt)
+
+Crea el archivo de contraseña:
+sudo nano /etc/postfix/sasl_passwd
+[smtp.gmail.com]:587 starlinalonzo26@gmail.com:dary dcwr qrsv fedh
+control 0 enter control x
+
+aplicar cambios 
+sudo postmap /etc/postfix/sasl_passwd
+sudo chmod 600 /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
+sudo systemctl restart postfix
+
+echo "Nombre: Tu Nombre - Matricula: Tu Matricula" | mail -s "MambruSeFueALaGuerra" os3conadrian@gmail.com
+sudo tail -n 20 /var/log/mail.log
