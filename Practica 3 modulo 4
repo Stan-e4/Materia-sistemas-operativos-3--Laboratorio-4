@@ -1,0 +1,18 @@
+1. Instalación de CUPS y la Impresora PDF
+sudo apt install cups cups-pdf -y
+sudo cupsctl --remote-admin --remote-any
+sudo systemctl restart cups
+Ve a tu navegador en la IP del servidor: https://IP_DEL_SERVIDOR:631
+Ve a Administration -> Add Printer.
+
+Selecciona CUPS-PDF (Virtual PDF Printer).
+
+Sigue los pasos y compártela ("Share This Printer").
+Desde el Cliente (Windows/Word)
+En Windows, ve a "Panel de Control" -> "Dispositivos e Impresoras".
+
+"Agregar una impresora" -> "La impresora que quiero no está en la lista".
+
+"Seleccionar una impresora compartida por nombre": http://IP_DEL_SERVIDOR:631/printers/PDF
+
+Abre Word, escribe algo y dale a Imprimir seleccionando esa impresora. El archivo aparecerá en el servidor en /var/spool/cups-pdf/ANONYMOUS/.
