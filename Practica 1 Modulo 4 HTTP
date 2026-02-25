@@ -1,0 +1,25 @@
+Practica 1: Servidor HTTP (Apache2)
+sudo apt update
+sudo apt install apache2 -y
+# Crear directorio y archivo para el primer sitio
+sudo mkdir -p /var/www/html/web1
+echo "<h1>Hola Mundo</h1>" | sudo tee /var/www/html/web1/index.html
+# Crear directorio y archivo con tu info
+sudo mkdir -p /var/www/html/web2
+echo "<h1>Adrian Alcantara - Matricula 20252247 - Sistemas Operativos</h1>" | sudo tee /var/www/html/web2/index.html
+
+Debes crear un archivo de configuración: sudo nano /etc/apache2/sites-available/practica1.conf
+Pega lo siguiente:
+# Web 1 en Puerto 80
+<VirtualHost *:80>
+    DocumentRoot /var/www/html/web1
+</VirtualHost>
+
+# Web 2 en Puerto 8080
+Listen 8080
+<VirtualHost *:8080>
+    DocumentRoot /var/www/html/web2
+</VirtualHost>
+sudo a2ensite practica1.conf
+sudo systemctl restart apache2
+ingresando a http://192.168.100.25 y http://192.168.100.25:8080
